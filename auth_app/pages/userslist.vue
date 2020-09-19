@@ -1,13 +1,13 @@
 <template>
-
   <div class="container">
     <Header />
     <div class="content-wrapper">
       <div class="left-part"><AdminMenu /></div>
-      <div class="right-part"><Catalog /></div>
+      <div class="right-part"><ListUsers /></div>
     </div>
 
 
+    </div>
   </div>
 </template>
 
@@ -34,12 +34,4 @@ export default {}
     .right-part
       padding: 100px 0 0 0;
       width: 80%;
-
-    @media screen and (min-width: 600px)
-      .right-part
-        width: 100%;
-
-
-
-
 </style>

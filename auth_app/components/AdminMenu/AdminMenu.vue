@@ -31,6 +31,7 @@ export default {
 <style lang="stylus" scoped>
 
 .sidebar
+  background: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,.170509);
   position: fixed;
   top: 0;
@@ -53,7 +54,9 @@ export default {
       font-weight: 600;
       text-decoration: none;
 
-
+@media screen and (min-width: 600px)
+  .sidebar
+    display: none;
 
 
 

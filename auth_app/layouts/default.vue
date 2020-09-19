@@ -63,5 +63,8 @@ html
 h4
   font-size: 1.5rem;
 
+h6
+  font-size: 1rem;
+
 
 </style>
