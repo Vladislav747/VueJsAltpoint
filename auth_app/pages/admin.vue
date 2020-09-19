@@ -1,6 +1,13 @@
 <template>
+
   <div class="container">
-   <AdminMenu />
+    <Header />
+    <div class="content-wrapper">
+      <div class="left-part"><AdminMenu /></div>
+      <div class="right-part"><Catalog /></div>
+    </div>
+
+
   </div>
 </template>
 
@@ -8,43 +15,27 @@
 export default {}
 </script>
 
-<style>
-.container {
+<style lang="stylus">
+.container
   margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+  h1
+    text-align: center;
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+  .content-wrapper
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
-.links {
-  padding-top: 15px;
-}
+    .left-part
+      width 15%;
+
+    .right-part
+      padding: 100px 0 0 0;
+      width: 80%;
+
+
+
+
 </style>

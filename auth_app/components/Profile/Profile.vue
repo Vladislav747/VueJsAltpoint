@@ -1,63 +1,24 @@
 <template>
-  <div class="login-form__wrapper">
-    <div class="form__inner form-container">
-      <form
-        class="login-form ui form"
-        method="post"
-        >
-        <h1>{{title}}</h1>
-          <div class="field">
-            <label
-              label-for="form__login"
-              style="text-transform: capitalize;"
-            />
-            <input
-              name="form__login"
-              type="email"
-              required
-              placeholder="Введите логин"
-              autoComplete="current-password"
-              v-model="login"
-            />
-            <small
-              v-if="errors.login"
-              class="error">Заполните {{loginTitle}}</small>
-          </div>
-          <div class="field">
-            <label
-                label-for="form__pass"
-                style="text-transform: capitalize;"
-            />
-            <input
-              name="form__login"
-              type="password"
-              required
-              placeholder="Введите пароль"
-              autoComplete="current-password"
-                v-model="password" />
-            <small
-                v-if="errors.login"
-                class="error">Заполните {{passwordTitle}}</small>
-          </div>
-          <div class="form__row">
-            <div class="form__link-reg">
-              <router-link id="register" :to="{ name: 'register' }">
-                <span class="link__reg" href="#">Регистрация</span>
-              </router-link>
-            </div>
-          </div>
-          <div class="field form__controls">
-              <div class="form__btn">
-                <input
-                  type="button"
-                  value="Логин"
-                  @click="loginForm"
-                  class="ui button secondary"
-                  style="margin-top: 20px;">
-              </div>
-          </div>
-      </form>
-    </div>
+  <div class="profile__wrapper">
+    <h4 class="profile__title">Профиль пользователя</h4>
+    <form class="">
+      <div class="row">
+          <label for="password">Роль пользователя</label>
+          <span>{{user.role}}</span>
+      </div>
+      <div class="row">
+          <label for="login">Логин</label>
+          <input type="text" class="form-control" id="login" placeholder="" value="" required="">
+      </div>
+
+      <div class="row">
+          <label for="password">Пароль</label>
+          <input type="text" class="form-control" id="password" placeholder="" value="" required="">
+      </div>
+      <div class="row">
+          <button class="btn btn-profile" type="submit">Сохранить</button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -68,7 +29,11 @@ export default {
   name: 'AdminMenu',
   data() {
       return {
+        user: {
+          "name": "Vladislav",
+          "role": "admin",
 
+        }
       };
     },
   methods: {
@@ -78,18 +43,43 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
-.login-form__wrapper
-  padding: 35px;
-  justify-content: center;
+.row
   display: flex;
-  margin: 0 auto;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 1rem 0;
 
-.login-form
-  width: 100%;
+  label
+    display: inline-block;
+    margin-bottom: .5rem;
 
-  h1
-    font-size: 2.5 rem;
+  input
+    padding: .375rem .75rem;
+    margin: 0 auto;
+    display: block;
+    width: 50%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+  .btn-profile
+    cursor: pointer;
+    width: 50%;
+    padding: .5rem 1rem;
+    margin: 0 auto;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
 
 
 </style>
