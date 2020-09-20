@@ -74,9 +74,11 @@ export default {
          * Залогиниться задачи
          */
   async loginForm() {
-    console.log("loginForm");
+
     var user;
     var password = this.password;
+    console.log([user, password],"loginForm");
+     this.$router.push({ name: "admin", params: { user } });
   }
 }
 }

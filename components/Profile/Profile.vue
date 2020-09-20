@@ -1,24 +1,26 @@
 <template>
   <div class="profile__wrapper">
-    <h4 class="profile__title">Профиль пользователя</h4>
-    <form class="">
+    <h4 class="profile__title">Профиль пользователя {{user.login}}</h4>
       <div class="row">
-          <label for="password">Роль пользователя</label>
-          <span>{{user.role}}</span>
-      </div>
-      <div class="row">
-          <label for="login">Логин</label>
-          <input type="text" class="form-control" id="login" placeholder="" value="" required="">
+        <label for="password">Роль пользователя</label>
+        <select :value="user.role" v-model="user.role">
+            <option v-for="role in userRoles" :key="role" :value="role">{{role}}</option>
+        </select>
       </div>
 
       <div class="row">
-          <label for="password">Пароль</label>
-          <input type="text" class="form-control" id="password" placeholder="" value="" required="">
+        <label for="login">Логин</label>
+        <input type="text" class="form-control" id="login" v-model="user.login" placeholder="Введите логин"/>
       </div>
+
       <div class="row">
-          <button class="btn btn-profile" type="submit">Сохранить</button>
+        <label for="password">Пароль</label>
+        <input type="text" class="form-control" id="password" v-model="user.pass" placeholder="Введите пароль" />
       </div>
-    </form>
+
+      <div class="row">
+        <button class="btn btn-profile" @click="saveResults">Сохранить</button>
+      </div>
   </div>
 </template>
 
@@ -30,14 +32,21 @@ export default {
   data() {
       return {
         user: {
-          "name": "Vladislav",
+          "login": "Vladislav",
           "role": "admin",
-
-        }
+          "pass": "12345",
+        },
+        userRoles:[
+          "admin",
+          "manager",
+          "user",
+        ]
       };
     },
   methods: {
-
+    saveResults(){
+      console.log(this.user,"saveResults");
+    }
   }
 }
 </script>
@@ -53,8 +62,11 @@ export default {
   label
     display: inline-block;
     margin-bottom: .5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-style: bold;
 
-  input
+  input, select
     padding: .375rem .75rem;
     margin: 0 auto;
     display: block;

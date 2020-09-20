@@ -12,7 +12,7 @@
 export default {}
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .container
   margin: 0 auto;
   min-height: 100vh;
@@ -21,3 +21,5 @@ export default {}
   align-items: center;
   text-align: center;
 </style>
+
+

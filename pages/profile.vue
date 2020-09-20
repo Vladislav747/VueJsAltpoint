@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Header />
+    <Header title="Админ панель"/>
     <div class="content-wrapper">
       <div class="left-part"><AdminMenu /></div>
       <div class="right-part"><Profile /></div>

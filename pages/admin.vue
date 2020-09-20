@@ -1,10 +1,10 @@
 <template>
 
   <div class="container">
-    <Header />
+    <Header title="Админ панель"/>
     <div class="content-wrapper">
       <div class="left-part"><AdminMenu /></div>
-      <div class="right-part"><Catalog /></div>
+      <div class="right-part"><ManageCatalog /></div>
     </div>
 
 
@@ -32,12 +32,17 @@ export default {}
       width 15%;
 
     .right-part
-      padding: 100px 0 0 0;
+      padding: 7em 3em 0;
       width: 80%;
 
-    @media screen and (min-width: 600px)
+    @media screen and (max-width: 600px)
+
+      .left-part
+        width: 0;
+
       .right-part
         width: 100%;
+        padding: 7em 1em 0;
 
 
 

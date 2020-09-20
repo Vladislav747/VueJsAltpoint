@@ -62,9 +62,11 @@ html
 
 h4
   font-size: 1.5rem;
+  margin-bottom: 1em;
 
 h6
   font-size: 1rem;
+  margin-bottom: 1em;
 
 
 </style>

@@ -1,13 +1,16 @@
 <template>
   <div class="sidebar admin-menu">
     <li>
-      <a href="">Профиль</a>
+       <nuxt-link to="/profile">Профиль</nuxt-link>
     </li>
     <li>
-      <a href="">Список пользователей</a>
+      <nuxt-link to="/userslist">Список пользователей</nuxt-link>
     </li>
     <li>
-      <a href="">Каталог</a>
+       <nuxt-link to="/admin">Управление каталогом</nuxt-link>
+    </li>
+    <li>
+       <nuxt-link to="/">Перейти в каталог</nuxt-link>
     </li>
   </div>
 </template>
@@ -47,6 +50,7 @@ export default {
     text-align: left;
 
     a
+      display: block;
       color: #2c2c2c;
       font-size: .9rem;
       line-height: 40px;
@@ -54,9 +58,16 @@ export default {
       font-weight: 600;
       text-decoration: none;
 
-@media screen and (min-width: 600px)
+      &:hover
+        background: #f2f2f2;
+
+@media screen and (max-width: 600px)
   .sidebar
     display: none;
+    position: fixed;
+
+  .sidebar.open
+    display: block;
 
 
 

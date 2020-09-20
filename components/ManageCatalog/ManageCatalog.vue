@@ -1,12 +1,13 @@
 <template>
   <div class="catalog__wrapper">
+      <h4>Управление каталогом товаров</h4>
       <table class="table">
         <thead>
             <tr>
-                <th >ID</th>
-                <th >Name</th>
-                <th >Price</th>
-                <th >Delete good</th>
+                <th>ID</th>
+                <th>Название товара</th>
+                <th>Цена</th>
+                <th>Удалить товара</th>
             </tr>
         </thead>
         <tbody>
@@ -24,28 +25,13 @@
 
 
 <script>
+import {goods} from "../../api/index.js";
+
 export default {
   name: 'AdminMenu',
   data() {
       return {
-        goods: [
-          {
-            "id": "1232131241",
-            "name": "Клубника",
-            "price": 1232131241
-          },
-          {
-            "id": "123141231324",
-            "name": "Мороженное",
-            "price": 3241234123
-          },
-          {
-            "id": "123124123sdf",
-            "name": "Машина",
-            "price": 12314123
-          },
-
-        ]
+        goods: goods,
       };
     },
   methods: {
