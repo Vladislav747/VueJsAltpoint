@@ -1,37 +1,21 @@
-<template>
-  <header class="header">
-      <div class="header__inner">
-        <div class="header__left">
-          <div class="header__mobile-menu-wrapper mobile-menu">
-            <div
-              class="mobile-menu__burger"
-              @click.prevent="showMobileMenu">
-            </div>
-          </div>
-          <div class="header__title"><h1>{{title}}</h1></div>
-          <div class="header__menu">
-            <div class="header-menu__item">
-              <nuxt-link class="header-menu-item__link" to="/">Каталог</nuxt-link>
-            </div>
-          </div>
-        </div>
-        <div class="header__right">
-          <div class="header__signin">
-            <nuxt-link v-if="userIsAuth" class="header__link" to="/admin">
-              <font-awesome-icon :icon="['fas', 'user-alt']" />
-            </nuxt-link>
-            <nuxt-link v-else class="header__link" to="/login">
-              <font-awesome-icon :icon="['fas', 'sign-in-alt']" />
-            </nuxt-link>
+<template lang="pug">
+  header.header
+    div.header__inner
+      div.header__left
+        div.header__mobile-menu-wrapper.mobile-menu
+          div.mobile-menu__burger(@click.prevent="showMobileMenu")
+        div.header__title
+          h1 {{title}}
+        div.header__menu
+          div.header-menu__item
+            nuxt-link.header-menu-item__link(to="/") Каталог
+      div.header__right
+        div.header__signin
+          nuxt-link.header__link(v-if="userIsAuth to="/admin")
+            <font-awesome-icon :icon="['fas', 'user-alt']" />
+          nuxt-link.header__link(v-else to="/login")
+            <font-awesome-icon :icon="['fas', 'sign-in-alt']" />
 
-
-          </div>
-        </div>
-
-
-      </div>
-
-  </header>
 </template>
 
 

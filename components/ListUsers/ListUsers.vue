@@ -1,22 +1,20 @@
-<template>
-  <div class="users-list__wrapper">
-    <h4 class="users-list__title">Список пользователей</h4>
-    <div v-for="user in users" class="user-item">
-      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
-      </svg>
-      <div class="user">
-        <div class="user__login">
-          <span class="user__title">Имя пользователя</span><p>{{user.login}}</p>
-        </div>
-        <div class="user__role">
-          <span class="user__title">Роль пользователя</span><p>{{user.role}}</p>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
+<template lang="pug">
+  div.users-list__wrapper
+    h4.users-list__title Список пользователей
+    div.user-item(v-for="user in users")
+      svg.bd-placeholder-img.mr-2.rounded(width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32")
+        title Placeholder
+        rect(width="100%" height="100%" fill="#007bff")
+          text(x="50%" y="50%" fill="#007bff" dy=".3em") 32x32
+      
+      div.user
+        div.user__login
+          span.user__title Имя пользователя
+          p {{user.login}}
+        
+        div.user__role
+          span.user__title Роль пользователя
+          p {{user.role}}
 </template>
 
 

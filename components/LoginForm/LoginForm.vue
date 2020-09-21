@@ -15,6 +15,7 @@
               name="form__login"
               type="email"
               required
+              class="input--form"
               placeholder="Введите логин"
               autoComplete="current-password"
               v-model="login"
@@ -31,6 +32,7 @@
             <input
               name="form__pass"
               type="password"
+              class="input--form"
               required
               placeholder="Введите пароль"
               autoComplete="current-password"
@@ -134,23 +136,6 @@ export default {
       text-align: left;
       margin-bottom: .5rem;
 
-    input
-      cursor: pointer;
-      margin: 0;
-      outline: 0;
-      -webkit-appearance: none;
-      tap-highlight-color: hsla(0,0%,100%,0);
-      font-size: 1em;
-      background: #fff;
-      border: 1px solid rgba(34,36,38,.15);
-      color: rgba(0,0,0,.87);
-      border-radius: .28571429rem;
-      -webkit-box-shadow: 0 0 0 0 transparent inset;
-      box-shadow: inset 0 0 0 0 transparent;
-      -webkit-transition: color .1s ease,border-color .1s ease;
-      transition: color .1s ease,border-color .1s ease;
-      line-height: 1.2em;
-      padding: 0.7rem;
 
 @media screen and (max-width: 600px)
   .login-form__wrapper

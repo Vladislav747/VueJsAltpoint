@@ -1,11 +1,8 @@
-<template>
+<template lang="pug">
 
-  <div class="container">
-    <div>
-      <LoginForm/>
-
-    </div>
-  </div>
+  div.container
+    LoginForm
+    
 </template>
 
 <script>

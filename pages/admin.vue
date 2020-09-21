@@ -1,14 +1,13 @@
-<template>
+<template lang="pug">
 
-  <div class="container">
-    <Header title="Админ панель"/>
-    <div class="content-wrapper">
-      <div class="left-part"><AdminMenu /></div>
-      <div class="right-part"><ManageCatalog /></div>
-    </div>
-
-
-  </div>
+  div.container
+    Header(title="Админ панель")
+    div.content-wrapper
+      div.left-part
+        AdminMenu
+      div.right-part
+        ManageCatalog
+    
 </template>
 
 <script>

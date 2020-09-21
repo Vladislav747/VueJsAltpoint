@@ -1,14 +1,12 @@
-<template>
-  <div class="container">
-    <Header title="Админ панель"/>
-    <div class="content-wrapper">
-      <div class="left-part"><AdminMenu /></div>
-      <div class="right-part"><ListUsers /></div>
-    </div>
-
-
-    </div>
-  </div>
+<template lang="pug">
+  div.container
+    Header(title="Админ панель")
+    div.content-wrapper
+      div.left-part
+        AdminMenu
+      div.right-part
+        ListUsers
+        
 </template>
 
 <script>

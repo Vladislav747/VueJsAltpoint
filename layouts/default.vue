@@ -30,15 +30,35 @@ html
   box-sizing: border-box;
   margin: 0;
 
+.button
+  cursor: pointer;
+  margin: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  tap-highlight-color: hsla(0,0%,100%,0);
+  font-size: 1em;
+  background: #fff;
+  border: 1px solid rgba(34,36,38,.15);
+  color: rgba(0,0,0,.87);
+  border-radius: .28571429rem;
+  -webkit-box-shadow: 0 0 0 0 transparent inset;
+  box-shadow: inset 0 0 0 0 transparent;
+  -webkit-transition: color .1s ease,border-color .1s ease;
+  transition: color .1s ease,border-color .1s ease;
+  line-height: 1.2em;
+  padding: 0.7rem;
+
+h4
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+
+h6
+  font-size: 1rem;
+  margin-bottom: 1em;
 
 .button--green
-  display: inline-block;
-  border-radius: 4px;
   border: 1px solid #3b8070;
   color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-
 
 .button--green:hover
   color: #fff;
@@ -59,14 +79,26 @@ html
   color: #fff;
   background-color: #35495e;
 
+input.input--form
+  cursor: pointer;
+  margin: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  tap-highlight-color: hsla(0,0%,100%,0);
+  font-size: 1em;
+  background: #fff;
+  border: 1px solid rgba(34,36,38,.15);
+  color: rgba(0,0,0,.87);
+  border-radius: .28571429rem;
+  -webkit-box-shadow: 0 0 0 0 transparent inset;
+  box-shadow: inset 0 0 0 0 transparent;
+  -webkit-transition: color .1s ease,border-color .1s ease;
+  transition: color .1s ease,border-color .1s ease;
+  line-height: 1.2em;
+  padding: 0.7rem;
 
-h4
-  font-size: 1.5rem;
-  margin-bottom: 1em;
 
-h6
-  font-size: 1rem;
-  margin-bottom: 1em;
+
 
 
 </style>

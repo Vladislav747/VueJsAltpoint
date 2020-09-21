@@ -1,15 +1,11 @@
-<template>
+<template lang="pug">
 
-  <div class="container">
-    <Header title="Главная" />
-    <main>
-      <div class="product-list">
-        <ProductCard v-for="item in items" :key="item" :product="item"/>
-      </div>
-
-    </main>
-
-  </div>
+  div.container
+    Header(title="Главная")
+    main
+      div.product-list
+        ProductCard(v-for="item in items" :key="item" :product="item")
+        
 </template>
 
 <script>

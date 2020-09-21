@@ -1,15 +1,13 @@
-<template>
-  <div class="sidebar admin-menu">
-    <li>
-       <nuxt-link to="/profile">Профиль</nuxt-link>
-    </li>
-    <li>
-      <nuxt-link to="/userslist">Список пользователей</nuxt-link>
-    </li>
-    <li>
-       <nuxt-link to="/admin">Управление каталогом</nuxt-link>
-    </li>
-  </div>
+<template lang="pug">
+  div.sidebar.admin-menu
+    li
+      nuxt-link(to="/profile") Профиль
+    li
+      nuxt-link(to="/userslist") Список пользователей
+    li
+      nuxt-link(to="/admin") Управление каталогом
+    li
+      nuxt-link(to="/calendar") Календарь
 </template>
 
 
