@@ -1,6 +1,7 @@
 <template>
   <header class="header">
       <div class="header__inner">
+        <div class="header__left">
           <div class="header__mobile-menu-wrapper mobile-menu">
             <div
               class="mobile-menu__burger"
@@ -8,9 +9,26 @@
             </div>
           </div>
           <div class="header__title"><h1>{{title}}</h1></div>
-          <div class="header__logout">
-            <font-awesome-icon :icon="['fas', 'sign-in-alt']" />
+          <div class="header__menu">
+            <div class="header-menu__item">
+              <nuxt-link class="header-menu-item__link" to="/">Каталог</nuxt-link>
+            </div>
           </div>
+        </div>
+        <div class="header__right">
+          <div class="header__signin">
+            <nuxt-link v-if="userIsAuth" class="header__link" to="/admin">
+              <font-awesome-icon :icon="['fas', 'user-alt']" />
+            </nuxt-link>
+            <nuxt-link v-else class="header__link" to="/login">
+              <font-awesome-icon :icon="['fas', 'sign-in-alt']" />
+            </nuxt-link>
+
+
+          </div>
+        </div>
+
+
       </div>
 
   </header>
@@ -32,18 +50,20 @@ export default {
 
       };
     },
+
+  computed: {
+    userIsAuth: function(){
+      var userRole = localStorage.getItem("isAuth");
+      return userRole
+    },
+  },
   methods: {
     showMobileMenu(){
       const menuBtn = document.querySelector('.mobile-menu');
       const mobileMenu = document.querySelector('.mobile-menu-wrapper');
-      console.log(this.HideMobileMenu)
-      if(!this.HideMobileMenu) {
-        menuBtn.classList.add('open');
-        mobileMenu.classList.add('show');
-      } else {
-        menuBtn.classList.remove('open');
-        mobileMenu.classList.remove('show');
-      }
+      menuBtn.classList.toggle('open');
+      mobileMenu.classList.toggle('show');
+
     },
   }
 }
@@ -64,16 +84,52 @@ header
     justify-content: space-between;
     align-items: center;
 
-    .header__logout
-      width: 40px;
-      height: auto;
+    .header__right
+      justify-content: flex-end;
 
-      svg
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
+    .header__left
+      flex: 1 1;
+
+    .header__right, .header__left
+      align-items: center;
+      display: flex;
+
+
+
+      .header__menu
+        margin: 0 1em;
+
+        .header-menu__item
+          padding: 1rem 0;
+
+          .header-menu-item__link
+            display: block;
+            color: #141c3a;
+            text-decoration: none;
+            font-size: 1.3rem;
+            margin: 0 .5rem;
+            font-weight: 600;
+
+      .header__signin
+        width: 40px;
+        height: auto;
+
+        svg
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+
+        .header__link
+          color: #141c3a;
+
+          &:hover
+            color: #333f6c;
+
+      .mobile-menu
+        display:none;
 
     @media screen and (max-width: 600px)
+
 
       .mobile-menu
         display: flex;

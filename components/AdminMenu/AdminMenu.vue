@@ -9,9 +9,6 @@
     <li>
        <nuxt-link to="/admin">Управление каталогом</nuxt-link>
     </li>
-    <li>
-       <nuxt-link to="/">Перейти в каталог</nuxt-link>
-    </li>
   </div>
 </template>
 

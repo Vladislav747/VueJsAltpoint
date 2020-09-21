@@ -57,6 +57,8 @@
 
 
 <script>
+import {users} from "../../api/index.js";
+import {showNoty} from "../../helpers";
 export default {
   name: 'LoginForm',
   data() {
@@ -70,15 +72,29 @@ export default {
       };
     },
   methods: {
-    /**
-         * Залогиниться задачи
-         */
-  async loginForm() {
+  /**
+   * Залогиниться
+  */
+  loginForm() {
+    console.log([this.login, this.password],"loginForm");
+    var userRole = this.checkRole(this.login, this.password);
+    if(userRole){
+      localStorage.setItem("role", userRole);
+      localStorage.setItem("isAuth", "true");
+      this.$router.push({ name: "admin", params: { "login":this.login, "pass":this.password } });
+    }else{
+      showNoty("Что то пошло не так - возможно вы ввели неверный логин или пароль!");
+    }
 
-    var user;
-    var password = this.password;
-    console.log([user, password],"loginForm");
-     this.$router.push({ name: "admin", params: { user } });
+  },
+
+  checkRole(login, password){
+
+    for(var i = 0; i < users.length; i++){
+      if(users[i].login == login && users[i].password == password)
+        return users[i].role
+    }
+    return false;
   }
 }
 }
@@ -90,7 +106,7 @@ export default {
   padding: 35px;
   margin: 0 auto;
   width: 50vw;
-  height: 40vh;
+  height: 60vh;
   display: flex;
   justify-content: center;
   box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
@@ -109,6 +125,7 @@ export default {
     .form__btn
       input[type="button"]
         width: 65%;
+        font-weight: 600;
         &:hover
           background-color: #efecec;
 
@@ -135,5 +152,8 @@ export default {
       line-height: 1.2em;
       padding: 0.7rem;
 
+@media screen and (max-width: 600px)
+  .login-form__wrapper
+    width: 90vw;
 
 </style>

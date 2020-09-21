@@ -19,12 +19,18 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-  ],
+  css: ['@/assets/noty.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
   ],
+
+  /**
+   * Router settings
+   */
+  router: {
+    middleware: ["auth"]
+  },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,

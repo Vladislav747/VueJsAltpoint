@@ -1,25 +1,37 @@
 <template>
 
   <div class="container">
-    <div>
-      <LoginForm/>
+    <Header title="Главная" />
+    <main>
+      <div class="product-list">
+        <ProductCard v-for="item in items" :key="item" :product="item"/>
+      </div>
 
-    </div>
+    </main>
+
   </div>
 </template>
 
 <script>
-export default {}
+import {goods} from "../api/index.js";
+export default {
+  data: () => ({
+    items: goods,
+  }),
+}
 </script>
 
 <style lang="stylus" scoped>
 .container
   margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+
+  main
+    padding: 7rem 0 0 0;
+
+    .product-list
+      display:flex;
+      padding: 30px;
+
 </style>
 
 
