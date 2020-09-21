@@ -1,46 +1,33 @@
-<template>
-  <div class="calendar-wrapper">
-    <header>
-      <div class="current-date">
-        <div class="calendar-title">
-          Укажите дату
-        </div>
-        <div class="today">
-          <div><div class="arrow-up" @click="dateIncrease()"></div></div>
-          <div><div class="arrow-up" @click="monthIncrease()"></div></div>
-          <div><div class="arrow-up" @click="yearIncrease()"></div></div>
-          <div>{{ currentDate.date }}</div>
-          <div>{{ month[currentDate.month] }}</div>
-          <div>{{ currentDate.year }}</div>
-          <div><div class="arrow-down" @click="dateDecrease()"></div></div>
-          <div><div class="arrow-down" @click="monthDecrease()"></div></div>
-          <div><div class="arrow-down" @click="yearDecrease()"></div></div>
-        </div>
-      </div>
-    </header>
-    <div class="calendar__main">
-      <div class="weekdays">
-        <div class="weekday" v-for="(weekday, index) in weekdays" :key="index">
-          {{ weekday }}
-        </div>
-      </div>
-      <div class="date">
-        <div class="day-hidden" v-for="(n, index) in (firstMonthDay -1)" :key="'prev'+index">
-          {{ (prevMonthDays +1) - firstMonthDay + n }}
-        </div>
-        <div class="day" 
-            :class="{ active: n === currentDate.date}"
-            @click="currentDate.date = n"
-            v-for="(n, index) in currentMonthDays" 
-            :key="'day'+index">
-          {{ n }}
-        </div>
-        <div class="day-hidden" v-for="(n, index) in (43 - (currentMonthDays + firstMonthDay))" :key="'next'+index">
-          {{ n }}
-        </div>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  div.calendar-wrapper
+    header
+      div.current-date
+        div.calendar-title Укажите дату
+        div.today
+          div
+            div.arrow-up(@click="dateIncrease()")
+          div
+            div.arrow-up(@click="monthIncrease()")
+          div
+            div.arrow-up(@click="yearIncrease()")
+          div {{ currentDate.date }}
+          div {{ month[currentDate.month] }}
+          div {{ currentDate.year }}
+          div 
+            div.arrow-down(@click="dateDecrease()")
+          div 
+            div.arrow-down(@click="monthDecrease()")
+          div 
+            div.arrow-down(@click="yearDecrease()")
+    div.calendar__main
+      div.weekdays
+        div.weekday(v-for="(weekday, index) in weekdays" :key="index") {{ weekday }}
+          
+      div.date
+        div.day-hidden(v-for="(n, index) in (firstMonthDay -1)" :key="'prev'+index") {{ (prevMonthDays +1) - firstMonthDay + n }}
+        div.day(:class="{ active: n === currentDate.date}" @click="currentDate.date = n" v-for="(n, index) in currentMonthDays" :key="'day'+index") {{ n }}
+        div.day-hidden(v-for="(n, index) in (43 - (currentMonthDays + firstMonthDay))" :key="'next'+index") {{ n }}
+          
 </template>
 
 <script>
@@ -85,13 +72,17 @@
       }
     },
     methods: {
+      //Получить текущую дату при загрузке календаря
       getCurrentDate() {
         let today = new Date();
         this.currentDate.date = today.getDate();
         this.currentDate.month = today.getMonth();
         this.currentDate.year = today.getFullYear();
       },
+      
       dateIncrease() {
+        /*Если текущая дата равна общему количеству дней
+        в текущем месяце то перескакиваем на след месяц*/
         if(this.currentDate.date === this.currentMonthDays) {
           this.currentDate.date = 1;
           this.monthIncrease();
@@ -100,7 +91,9 @@
           this.currentDate.date += 1;
         }
       },
+
       dateDecrease() {
+        /*Если текущая дата достигла минимального знач то перескакиваем на пред месяц*/
         if(this.currentDate.date === 1) {
           this.currentDate.date = this.prevMonthDays;
           this.monthDecrease();
@@ -109,7 +102,9 @@
           this.currentDate.date -= 1;
         }
       },
+
       monthIncrease() {
+        /*Если количество достигла максимального знач то перескакиваем на след месяц*/
         if(this.currentDate.month === 11) {
           this.currentDate.month = 0;
           this.currentDate.year += 1;
@@ -118,6 +113,7 @@
           this.currentDate.month += 1;
         }        
       },
+      /*Если количество достигла минимального знач то перескакиваем на пред месяц*/
       monthDecrease() {
         if(this.currentDate.month === 0) {
           this.currentDate.month = 11;
@@ -131,6 +127,7 @@
       yearIncrease(){
         this.currentDate.year += 1;
       },
+
       yearDecrease(){
         this.currentDate.year -= 1;
       }
@@ -141,35 +138,37 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  @mixin calendar-layout($property) {
+<style lang="stylus" scoped>
+
+  calendar-layout(property)
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     grid-gap: 10px;
     padding: $property;
-    div {
+    div
       display: flex;
       justify-content: center;
       align-items: center;
       height: 50px;
       color: #fff;
-    }
-  }
-  @mixin arrow-style() {
+    
+  
+  arrow-style()
     width: 0;
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     cursor: pointer;
-  }
-  .calendar-wrapper {
+  
+  .calendar-wrapper
     margin: 5em 0;
     width: 30vw;
     background-color: #efefef;
     overflow: hidden;
     background-size: cover;
     user-select: none;
-    header {
+
+    header 
       display: flex;
       justify-content: center;
       align-items: center;
@@ -178,62 +177,64 @@
       overflow: hidden;
       color: #000;
       font-weight: 600;
-      .current-date {
+
+      .current-date 
         width: 300px;
-      }
-      .arrow-up {
-        @include arrow-style();
+      
+      .arrow-up 
+        arrow-style();
         border-bottom: 10px solid #000;
-        &:hover {
+        &:hover
           border-bottom: 10px solid rgba(0,0,0,.4);
-        }
-      }
-      .arrow-down {
-        @include arrow-style();
+        
+      
+      .arrow-down
+        arrow-style();
         border-top: 10px solid #000;
-        &:hover {
+
+        &:hover
           border-top: 10px solid rgba(0,0,0,.4);
-        }
-      }
-      .today {
+        
+      
+      .today
         display: grid;
         grid-template-columns: 40px auto 70px;
         grid-gap: 0;
-        div {
+        div
           display: flex;
           justify-content: center;
-        }
-      }
-      .calendar-title {
+        
+      
+      .calendar-title
         font-size: 2rem;
         margin-bottom: 2rem;
-      }
-      .today {
+      
+      .today
         font-size: 2rem;
-      }
-    }
-    .weekdays {
-      @include calendar-layout(20px);
+      
+    
+    .weekdays
+      calendar-layout(20px);
       background-color: rgba(136, 130, 130, 0.5);
       font-weight: 600;
-    }
-    .date {
-      @include calendar-layout(10px 20px 20px);
+    
+    .date
+      calendar-layout(10px 20px 20px);
       background-color: rgba(0,0,0,.7);
-      .active {
+      .active
         background-color: #fff;
         color: #2A4C50;
-      }
-      .day {
+      
+      .day
         cursor: pointer;
-        &:hover {
+        &:hover
           background-color: #fff;
           color: #2A4C50;
-        }
-      }
-      .day-hidden {
+        
+      
+      .day-hidden
         opacity: .4;
-      }
-    }
-  }
+      
+    
+  
 </style>

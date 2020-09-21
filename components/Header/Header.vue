@@ -11,10 +11,10 @@
             nuxt-link.header-menu-item__link(to="/") Каталог
       div.header__right
         div.header__signin
-          nuxt-link.header__link(v-if="userIsAuth to="/admin")
-            <font-awesome-icon :icon="['fas', 'user-alt']" />
+          nuxt-link.header__link(v-if="userIsAuth" to="/admin")
+            i.fas.fa-user-alt
           nuxt-link.header__link(v-else to="/login")
-            <font-awesome-icon :icon="['fas', 'sign-in-alt']" />
+            i.fas.fa-sign-in-alt
 
 </template>
 

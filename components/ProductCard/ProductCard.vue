@@ -1,31 +1,16 @@
-<template>
-  <div class="product">
-    <div class="product-inner">
-      <div
-        class="product-header">
-        <div class="product-header--top">
-          <div class="product-title">{{ product.name }}</div>
-        </div>
-        <div class="product-image-wrapper">
-          <div class="image-wrapper">
-            <img
-              class="product-image"
-              :src="product.srcImage" />
-          </div>
-
-
-        </div>
-      </div>
-      <div class="product-properties">
-
-        <div class="price-block">
-          <span class="price">{{product.price}} <span class="currency">{{currency}}</span></span>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
+<template lang="pug">
+  div.product
+    div.product-inner
+      div.product-header
+        div.product-header--top
+          div.product-title {{ product.name }}
+        div.product-image-wrapper
+          div.image-wrapper
+            img.product-image(:src="product.srcImage")
+      div.product-properties
+        div.price-block
+          span.price {{product.price}}  
+            span.currency {{currency}}
 </template>
 <script>
 export default {

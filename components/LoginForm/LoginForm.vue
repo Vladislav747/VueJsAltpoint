@@ -1,59 +1,17 @@
-<template>
-  <div class="login-form__wrapper">
-    <div class="form__inner form-container">
-      <form
-        class="login-form ui form"
-        method="post"
-        >
-        <h1>{{title}}</h1>
-          <div class="field">
-            <label
-              label-for="form__login"
-              style="text-transform: capitalize;"
-            >Логин</label>
-            <input
-              name="form__login"
-              type="email"
-              required
-              class="input--form"
-              placeholder="Введите логин"
-              autoComplete="current-password"
-              v-model="login"
-            />
-            <small
-              v-if="errors.login"
-              class="error">Заполните {{loginTitle}}</small>
-          </div>
-          <div class="field">
-            <label
-              label-for="form__pass"
-              style="text-transform: capitalize;"
-            >Пароль</label>
-            <input
-              name="form__pass"
-              type="password"
-              class="input--form"
-              required
-              placeholder="Введите пароль"
-              autoComplete="current-password"
-              v-model="password" />
-            <small
-                v-if="errors.login"
-                class="error">Заполните {{passwordTitle}}</small>
-          </div>
-          <div class="field form__controls">
-              <div class="form__btn">
-                <input
-                  type="button"
-                  value="Логин"
-                  @click="loginForm"
-                  class="ui button secondary"
-                  style="margin-top: 20px;">
-              </div>
-          </div>
-      </form>
-    </div>
-  </div>
+<template lang="pug">
+  div.login-form__wrapper
+    div.form__inner.form-container
+      form.login-form.ui.form( method="post")
+        h1 {{title}}
+        div.field
+          label(label-for="form__login") Логин
+          input.input--form(name="form__login" type="email" required placeholder="Введите логин" autoComplete="current-password" v-model="login")
+        div.field
+          label(label-for="form__pass") Пароль
+          input.input--form(name="form__pass" type="password" required placeholder="Введите пароль" autoComplete="current-password" v-model="password")
+        div.field.form__controls
+            div.form__btn
+              input.ui.button.secondary(type="button" value="Логин" @click="loginForm")
 </template>
 
 
@@ -119,6 +77,7 @@ export default {
 
   h1
     font-size: 2.5 rem;
+    margin-bottom: 1rem;
 
   .field
     display: flex;
@@ -128,6 +87,7 @@ export default {
       input[type="button"]
         width: 65%;
         font-weight: 600;
+        margin-top: 1rem;
         &:hover
           background-color: #efecec;
 

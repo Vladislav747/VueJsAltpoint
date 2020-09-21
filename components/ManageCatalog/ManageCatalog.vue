@@ -19,7 +19,9 @@
           td {{item.price}}
           td.td__image 
             img(:src="item.srcImage")
-          td {{item.tags}}
+          td 
+            span.item__tag(v-for="tag in item.tags" v-bind:key="tag") {{tag}}
+              
           td
             a(@click.prevent="editItem(item.id)")
               i.fas.fa-edit
@@ -41,11 +43,11 @@
               input.input--form#price(type="text" v-model="addPrice")
 
         div.form__row
-          label(for="description") Описание
+          label(for="tags") Теги(вносите через запятую)
           div.input-wrapper
-            input.input--form#description(type="text" v-model="addDescription")
+            input.input--form#tags(type="text" v-model="addTags")
         
-        input.ui.button.secondary.button--green(type="button" value="Добавить товар"  @click.prevent="addItem")
+        input.ui.button.secondary.button--green(type="button" value="Добавить товар" @click.prevent="addItem")
         
 </template>
 
@@ -53,7 +55,7 @@
 
 <script>
 import {goods} from "../../api/index.js";
-
+import {showNoty} from "../../helpers";
 export default {
   name: 'AdminMenu',
   data() {
@@ -61,26 +63,27 @@ export default {
         items: goods,
         addName: "",
         addPrice: "",
-        addDescription: "",
+        addTags: "",
         isEdit: false,
       };
     },
   methods: {
     //Добавить товар
     addItem(){
-      if(this.addName && this.addPrice){
+      if(this.addName && this.addPrice && this.addSrcImage && this.addSrcImage){
         this.items.push({
           "id": this.addPrice+this.addName,
           "name": this.addName,
           "price": this.addPrice,
-          "srcImage": "srcImage",
-          "description": this.addDescription,
+          "srcImage": this.addSrcImage,
+          "tags": this.addTags,
         })
+      }else{
+        showNoty("Проверьте пожалуйста что вы заполнили все поля");
       }
     },
     //Удалить товар
     deleteItem(itemId){
-      console.log(itemId,"delelteItem")
       this.items = this.items.filter(element => element.id !== itemId);
     },
     //Отредактировать товар
@@ -111,6 +114,13 @@ export default {
       img
         width: 7vw;
         height:auto;
+
+    .item__tag
+      background: #d0c7c7;
+      margin: 0 .5em;
+      padding: .5em;
+      border-radius: 5px;
+    
 
     .fas
       cursor: pointer;
