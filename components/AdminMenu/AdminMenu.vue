@@ -29,6 +29,7 @@ export default {
   left: 0;
   z-index: 100;
   padding: 120px 0 0;
+  transition: all .4s;
 
   li
     width: 100%;
@@ -48,13 +49,13 @@ export default {
       &:hover
         background: #f2f2f2;
 
-@media screen and (max-width: 600px)
+@media screen and (max-width: 850px)
   .sidebar
-    display: none;
-    position: fixed;
+    left:-100%;
 
-  .sidebar.open
-    display: block;
+
+  .sidebar.show
+    left: 0;
 
 
 

@@ -5,7 +5,7 @@
     main
       div.product-list
         ProductCard(v-for="item in items" :key="item" :product="item")
-        
+
 </template>
 
 <script>
@@ -19,7 +19,6 @@ export default {
 
 <style lang="stylus" scoped>
 .container
-  margin: 0 auto;
 
   main
     padding: 7rem 0 0 0;

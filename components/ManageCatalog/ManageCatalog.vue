@@ -88,10 +88,10 @@ export default {
       this.isEdit = true;
     },
 
-    formatTags(tags){
-      console.log(tags, "formatTags");
-      return tags.join(",")
-    }
+    // formatTags(tags){
+    //   console.log(tags, "formatTags");
+    //   return tags.join(",")
+    // }
   }
 }
 </script>

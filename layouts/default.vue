@@ -97,6 +97,34 @@ input.input--form
   line-height: 1.2em;
   padding: 0.7rem;
 
+.container
+  margin: 0 auto;
+
+  h1
+    text-align: center;
+
+  .content-wrapper
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .left-part
+      width 15%;
+
+    .right-part
+      padding: 7em 3em 0;
+      width: 80%;
+
+    @media screen and (max-width: 850px)
+
+      .left-part
+        width: 0;
+
+      .right-part
+        width: 100%;
+        padding: 7em 1em 0;
+
 
 
 

@@ -103,8 +103,14 @@ export default {
     .button
       margin-top: 1rem;
 
+@media screen and (max-width: 1024px)
+  .add-item__wrapper
+    form
+      width: 50vw;
 
-
-
+@media screen and (max-width: 600px)
+  .add-item__wrapper
+    form
+      width: 70vw;
 
 </style>

@@ -44,7 +44,7 @@ export default {
   methods: {
     showMobileMenu(){
       const menuBtn = document.querySelector('.mobile-menu');
-      const mobileMenu = document.querySelector('.mobile-menu-wrapper');
+      const mobileMenu = document.querySelector('.sidebar');
       menuBtn.classList.toggle('open');
       mobileMenu.classList.toggle('show');
 
@@ -78,8 +78,6 @@ header
       align-items: center;
       display: flex;
 
-
-
       .header__menu
         margin: 0 1em;
 
@@ -112,28 +110,20 @@ header
       .mobile-menu
         display:none;
 
-    @media screen and (max-width: 600px)
+@media screen and (max-width: 850px)
+  header
+    .header__inner
+      .header__left
 
-
-      .mobile-menu
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 80px;
-        cursor: pointer;
-        transition: all .5s ease-in-out;
-
-        &__burger
-          width: 40px;
-          height: 6px;
-          background: #000;
-          border-radius: 5px;
-          box-shadow: 0 2px 5px rgba(0,0,0,.2);
+        .mobile-menu
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 80px;
+          cursor: pointer;
           transition: all .5s ease-in-out;
 
-          &::before, &::after
-            content: '';
-            position: absolute;
+          &__burger
             width: 40px;
             height: 6px;
             background: #000;
@@ -141,23 +131,33 @@ header
             box-shadow: 0 2px 5px rgba(0,0,0,.2);
             transition: all .5s ease-in-out;
 
-          &::before
-            transform: translateY(-16px);
+            &::before, &::after
+              content: '';
+              position: absolute;
+              width: 40px;
+              height: 6px;
+              background: #000;
+              border-radius: 5px;
+              box-shadow: 0 2px 5px rgba(0,0,0,.2);
+              transition: all .5s ease-in-out;
 
-          &::after
-            transform: translateY(16px);
+            &::before
+              transform: translateY(-16px);
+
+            &::after
+              transform: translateY(16px);
 
 
-        &.open .mobile-menu__burger
-          transform: translateX(-50px);
-          background: transparent;
-          box-shadow: none;
+          &.open .mobile-menu__burger
+            transform: translateX(-50px);
+            background: transparent;
+            box-shadow: none;
 
-        &.open .mobile-menu__burger::before
-          transform: rotate(45deg) translate(35px, -35px);
+          &.open .mobile-menu__burger::before
+            transform: rotate(45deg) translate(35px, -35px);
 
-        &.open .mobile-menu__burger::after
-          transform: rotate(-45deg) translate(35px, 35px);
+          &.open .mobile-menu__burger::after
+            transform: rotate(-45deg) translate(35px, 35px);
 
 
 
