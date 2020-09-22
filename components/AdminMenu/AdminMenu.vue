@@ -15,14 +15,6 @@
 <script>
 export default {
   name: 'AdminMenu',
-  data() {
-      return {
-
-      };
-    },
-  methods: {
-
-  }
 }
 </script>
 

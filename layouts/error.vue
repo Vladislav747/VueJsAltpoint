@@ -9,5 +9,9 @@
 <script>
 export default {
   props: ['error'],
+  created: function(){
+    debugger;
+    console.log('created()');
+}
 }
 </script>

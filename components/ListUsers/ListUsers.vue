@@ -6,12 +6,12 @@
         title Placeholder
         rect(width="100%" height="100%" fill="#007bff")
           text(x="50%" y="50%" fill="#007bff" dy=".3em") 32x32
-      
+
       div.user
         div.user__login
           span.user__title Имя пользователя
           p {{user.login}}
-        
+
         div.user__role
           span.user__title Роль пользователя
           p {{user.role}}
@@ -20,18 +20,13 @@
 
 
 <script>
-import {users} from "../../api/index.js";
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ListUsers',
-  data() {
-      return {
-        users: users,
-      };
-    },
-  methods: {
-
-}
+  computed: mapGetters({
+    users: 'users/getListUsers'
+  }),
 }
 </script>
 

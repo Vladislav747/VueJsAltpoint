@@ -17,44 +17,45 @@
 
 
 <script>
+import { mapGetters } from 'vuex'
+
 import {users} from "../../api/index.js";
 import {showNoty} from "../../helpers";
 export default {
   name: 'LoginForm',
   data() {
-      return {
-          title: "Авторизация",
-          loginTitle: "Логин",
-          passwordTitle: "Пароль",
-          errors: [],
-          login:"",
-          password:"",
-      };
-    },
+    return {
+        title: "Авторизация",
+        loginTitle: "Логин",
+        passwordTitle: "Пароль",
+        login:"",
+        password:"",
+    };
+  },
+  computed: mapGetters({
+    user:'users/getUser'
+  }),
   methods: {
   /**
    * Залогиниться
   */
   loginForm() {
     console.log([this.login, this.password],"loginForm");
-    var userRole = this.checkRole(this.login, this.password);
+    var currentUser = {
+      "login": this.login,
+      "password": this.password,
+    }
+    this.$store.commit('users/changeCurrentUser', currentUser);
+    console.log(this.user, "store");
+    var userRole = this.user;
     if(userRole){
-      localStorage.setItem("role", userRole);
+      localStorage.setItem("role", userRole.role);
       localStorage.setItem("isAuth", "true");
-      this.$router.push({ name: "admin", params: { "login":this.login, "pass":this.password } });
+      this.$router.push({ name: "admin"});
     }else{
       showNoty("Что то пошло не так - возможно вы ввели неверный логин или пароль!");
     }
 
-  },
-
-  checkRole(login, password){
-
-    for(var i = 0; i < users.length; i++){
-      if(users[i].login == login && users[i].password == password)
-        return users[i].role
-    }
-    return false;
   }
 }
 }

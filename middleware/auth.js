@@ -3,9 +3,14 @@ export default function({ route, redirect }) {
   const blockedRouteAdmin = /\/admin\/*/g;
   const blockedRouteProfile = /\/profile\/*/g;
   const blockedRouteUsersList = /\/userslist\/*/g;
+  const homeRoute = "/";
   //["manager", "admin"].includes(user)
 
   if (!user && route.path.match(blockedRouteAdmin)) {
+    redirect("/login");
+  }
+
+  if (!user && route.path == homeRoute) {
     redirect("/login");
   }
 

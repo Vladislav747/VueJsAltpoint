@@ -1,7 +1,7 @@
 <template lang="pug">
   div.catalog__wrapper
     h4 Управление каталогом товаров
-        
+
     table.table
       thead
         tr
@@ -15,82 +15,83 @@
       tbody
         tr(v-for="item in items" v-bind:key="item.id")
           td {{item.id}}
-          td {{item.name}}
-          td {{item.price}}
-          td.td__image 
-            img(:src="item.srcImage")
-          td 
-            span.item__tag(v-for="tag in item.tags" v-bind:key="tag") {{tag}}
-              
           td
-            a(@click.prevent="editItem(item.id)")
+            div(v-if="!isEdit") {{item.name}}
+            input.input--form(v-else type="text" v-model="item.name" )
+          td
+            div(v-if="!isEdit") {{item.price}}
+            input.input--form(v-else type="text" v-model="item.price")
+
+          td.td__image
+            img(v-if="!isEdit" :src="item.srcImage")
+            input.input--form(v-else type="text" v-model="item.srcImage")
+          td
+            div(v-if="!isEdit")
+              span.item__tag(v-for="tag in item.tags" v-bind:key="tag" ) {{tag}}
+            input.input--form(v-else type="text" v-model="item.tags")
+
+          td
+            a(@click.prevent="enterEditMode" v-if="!isEdit")
               i.fas.fa-edit
-          td 
+            div(v-else)
+              button.button.btn-edit(@click.prevent="editItem(item)") Принять изменения
+          td
             a(@click.prevent="deleteItem(item.id)")
               i.fas.fa-trash
-          
-    div.add-item__wrapper
-      h2.add-item__title Добавить товар
-      form(novalidate)
-        div.form__row
-          label(for="name") Название товара
-          div.input-wrapper
-            input.input--form#name(type="text" v-model="addName")
 
-        div.form__row
-          label(for="price") Цена
-           div.input-wrapper
-              input.input--form#price(type="text" v-model="addPrice")
+    AddForm(formTitle="Добавить товар" formBtnValue="Добавить товар")
 
-        div.form__row
-          label(for="tags") Теги(вносите через запятую)
-          div.input-wrapper
-            input.input--form#tags(type="text" v-model="addTags")
-        
-        input.ui.button.secondary.button--green(type="button" value="Добавить товар" @click.prevent="addItem")
-        
 </template>
 
-
-
 <script>
-import {goods} from "../../api/index.js";
+import { mapGetters } from 'vuex'
+
 import {showNoty} from "../../helpers";
+
 export default {
-  name: 'AdminMenu',
+  name: 'ManageCatalog',
   data() {
-      return {
-        items: goods,
-        addName: "",
-        addPrice: "",
-        addTags: "",
-        isEdit: false,
-      };
-    },
+    return {
+      addName: "",
+      addPrice: "",
+      addTags: "",
+      addImageSrc:"",
+      isEdit: false,
+    };
+  },
+  computed: {
+    items:  {
+      get() {
+        return Object.assign({},this.$store.state.catalog.products);
+      },
+      set(ev) {
+       console.log(ev, "set");
+      },
+    }
+  },
+
   methods: {
-    //Добавить товар
-    addItem(){
-      if(this.addName && this.addPrice && this.addSrcImage && this.addSrcImage){
-        this.items.push({
-          "id": this.addPrice+this.addName,
-          "name": this.addName,
-          "price": this.addPrice,
-          "srcImage": this.addSrcImage,
-          "tags": this.addTags,
-        })
-      }else{
-        showNoty("Проверьте пожалуйста что вы заполнили все поля");
-      }
-    },
+
     //Удалить товар
     deleteItem(itemId){
-      this.items = this.items.filter(element => element.id !== itemId);
+      this.$store.commit("catalog/deleteProduct", itemId);
     },
-    //Отредактировать товар
-    editItem(){
-      console.log(editItem);
 
+    //Отредактировать товар
+    editItem(item){
+      console.log(item, "editItem");
+      this.isEdit = false;
     },
+
+    //Войти в режим редактирования
+    enterEditMode(){
+      this.isEdit = true;
+    },
+
+    formatTags(tags){
+      console.log(tags, "formatTags");
+      return tags.join(",")
+    }
   }
 }
 </script>
@@ -114,13 +115,14 @@ export default {
       img
         width: 7vw;
         height:auto;
+        box-shadow: 0 0 4px black;
 
     .item__tag
       background: #d0c7c7;
       margin: 0 .5em;
       padding: .5em;
       border-radius: 5px;
-    
+
 
     .fas
       cursor: pointer;
@@ -131,28 +133,9 @@ export default {
       &.fa-edit:hover
         color: #c0c00c;
 
-  .add-item__title
-    margin-bottom: 1rem;
-
-  form
-    display: flex;
-    flex-direction: column;
-    width: 20vw;
-    margin: 0 auto;
-
-    .form__row
-      text-align: left;
-      margin-bottom: 1rem;
-
-    .input-wrapper
-      .input--form
-        width: 100%;
-
     .button
-      margin-top: 1rem;
-
-
-
-
+      &.btn-edit
+        &:hover
+          background: #c0c00c;
 
 </style>
