@@ -2,9 +2,9 @@
   div.sidebar.admin-menu
     li
       nuxt-link(to="/profile") Профиль
-    li
+    li(v-if="getAdminRole")
       nuxt-link(to="/userslist") Список пользователей
-    li
+    li(v-if="getManagerRole")
       nuxt-link(to="/admin") Управление каталогом
     li
       nuxt-link(to="/calendar") Календарь
@@ -15,6 +15,18 @@
 <script>
 export default {
   name: 'AdminMenu',
+  computed: {
+    //Вычислить роль пользователя
+    getAdminRole(){
+      var userRole = localStorage.getItem("role");
+      return userRole === "admin";
+    },
+    //Вычислить роль пользователя
+    getManagerRole() {
+      var userRole = localStorage.getItem("role");
+      return userRole === "admin" || userRole === "manager";
+    }
+  }
 }
 </script>
 

@@ -51,7 +51,7 @@ export default {
     if(userRole){
       localStorage.setItem("role", userRole.role);
       localStorage.setItem("isAuth", "true");
-      this.$router.push({ name: "admin"});
+      this.$router.push({ name: "profile"});
     }else{
       showNoty("Что то пошло не так - возможно вы ввели неверный логин или пароль!");
     }

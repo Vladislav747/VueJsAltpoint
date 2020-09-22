@@ -64,9 +64,6 @@ export default {
       get() {
         return Object.assign({},this.$store.state.catalog.products);
       },
-      set(ev) {
-       console.log(ev, "set");
-      },
     }
   },
 
@@ -89,7 +86,6 @@ export default {
     },
 
     // formatTags(tags){
-    //   console.log(tags, "formatTags");
     //   return tags.join(",")
     // }
   }
