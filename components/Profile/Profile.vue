@@ -16,30 +16,22 @@
 
 </template>
 
-
-
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'Profile',
   data() {
     return {
-      userRoles:[
-        "admin",
-        "manager",
-        "user",
-      ]
+      userRoles: ['admin', 'manager', 'user']
     };
   },
-   computed: {
+  computed: {
     user: {
       get() {
         return this.$store.state.users.user;
-      },
+      }
     }
-  },
-}
+  }
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -87,6 +79,4 @@ export default {
       color: #fff;
       background-color: #007bff;
       border-color: #007bff;
-
-
 </style>

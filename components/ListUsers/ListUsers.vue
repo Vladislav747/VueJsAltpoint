@@ -17,17 +17,15 @@
           p {{user.role}}
 </template>
 
-
-
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 
 export default {
-  name: 'ListUsers',
-  computed: mapGetters({
-    users: 'users/getListUsers'
-  }),
-}
+      name: 'ListUsers',
+      computed: mapGetters({
+            users: 'users/getListUsers'
+      })
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -58,7 +56,4 @@ export default {
 
       &__title
         font-weight: 600;
-
-
-
 </style>

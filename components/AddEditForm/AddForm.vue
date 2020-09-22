@@ -28,57 +28,55 @@
 </template>
 
 <script>
-import {showNoty} from "../../helpers";
+import { showNoty } from "../../helpers";
 
 export default {
-  name: 'AddForm',
-   props: {
+  name: "AddForm",
+  props: {
     formTitle: {
-      type: String,
+      type: String
     },
     formBtnValue: {
-      type: String,
-    },
+      type: String
+    }
   },
 
   data() {
-      return {
-        addName: "",
-        addPrice: "",
-        addTags: "",
-        addImageSrc:"",
-        isEdit: false,
-      };
-    },
+    return {
+      addName: "",
+      addPrice: "",
+      addTags: "",
+      addImageSrc: "",
+      isEdit: false
+    };
+  },
   methods: {
-    //Добавить товар
-    addItem(){
-      if(this.addName && this.addPrice && this.addTags && this.addImageSrc){
+    // Добавить товар
+    addItem() {
+      if (this.addName && this.addPrice && this.addTags && this.addImageSrc) {
         this.addTags = this.addTags.split(",");
-        console.log(this.addTags, "addItem");
-        var item = {
-          "id": this.addPrice+this.addName,
-          "name": this.addName,
-          "price": this.addPrice,
-          "srcImage": this.addImageSrc,
-          "tags": this.addTags,
+        const item = {
+          id: this.addPrice + this.addName,
+          name: this.addName,
+          price: this.addPrice,
+          srcImage: this.addImageSrc,
+          tags: this.addTags
         };
         this.$store.commit("catalog/addProduct", item);
-      }else{
+      } else {
         showNoty("Проверьте пожалуйста что вы заполнили все поля");
       }
     },
-    //Удалить товар
-    deleteItem(itemId){
+    // Удалить товар
+    deleteItem(itemId) {
       this.items = this.items.filter(element => element.id !== itemId);
     },
-    //Отредактировать товар
-    editItem(){
+    // Отредактировать товар
+    editItem() {
       console.log(editItem);
-
-    },
+    }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -112,5 +110,4 @@ export default {
   .add-item__wrapper
     form
       width: 70vw;
-
 </style>

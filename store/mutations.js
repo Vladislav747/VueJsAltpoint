@@ -1,4 +1,1 @@
-import Vue from 'vue'
-export default {
-
-}
+export default {};

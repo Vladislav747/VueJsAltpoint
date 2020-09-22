@@ -10,24 +10,22 @@
       nuxt-link(to="/calendar") Календарь
 </template>
 
-
-
 <script>
 export default {
   name: 'AdminMenu',
   computed: {
-    //Вычислить роль пользователя
-    getAdminRole(){
-      var userRole = localStorage.getItem("role");
-      return userRole === "admin";
+    // Вычислить роль пользователя
+    getAdminRole() {
+      const userRole = localStorage.getItem('role');
+      return userRole === 'admin';
     },
-    //Вычислить роль пользователя
+    // Вычислить роль пользователя
     getManagerRole() {
-      var userRole = localStorage.getItem("role");
-      return userRole === "admin" || userRole === "manager";
+      const userRole = localStorage.getItem('role');
+      return userRole === 'admin' || userRole === 'manager';
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -65,12 +63,6 @@ export default {
   .sidebar
     left:-100%;
 
-
   .sidebar.show
     left: 0;
-
-
-
-
-
 </style>

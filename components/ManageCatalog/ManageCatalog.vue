@@ -44,52 +44,47 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
-import {showNoty} from "../../helpers";
-
 export default {
   name: 'ManageCatalog',
   data() {
     return {
-      addName: "",
-      addPrice: "",
-      addTags: "",
-      addImageSrc:"",
-      isEdit: false,
+      addName: '',
+      addPrice: '',
+      addTags: '',
+      addImageSrc: '',
+      isEdit: false
     };
   },
   computed: {
-    items:  {
+    items: {
       get() {
-        return Object.assign({},this.$store.state.catalog.products);
-      },
+        return Object.assign({}, this.$store.state.catalog.products);
+      }
     }
   },
 
   methods: {
-
-    //Удалить товар
-    deleteItem(itemId){
-      this.$store.commit("catalog/deleteProduct", itemId);
+    // Удалить товар
+    deleteItem(itemId) {
+      this.$store.commit('catalog/deleteProduct', itemId);
     },
 
-    //Отредактировать товар
-    editItem(item){
-      console.log(item, "editItem");
+    // Отредактировать товар
+    editItem(item) {
+      console.log(item, 'editItem');
       this.isEdit = false;
     },
 
-    //Войти в режим редактирования
-    enterEditMode(){
+    // Войти в режим редактирования
+    enterEditMode() {
       this.isEdit = true;
-    },
+    }
 
     // formatTags(tags){
     //   return tags.join(",")
     // }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -119,7 +114,6 @@ export default {
       padding: .5em;
       border-radius: 5px;
 
-
     .fas
       cursor: pointer;
 
@@ -133,5 +127,4 @@ export default {
       &.btn-edit
         &:hover
           background: #c0c00c;
-
 </style>

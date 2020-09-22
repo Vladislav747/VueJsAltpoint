@@ -18,39 +18,31 @@
 
 </template>
 
-
-
 <script>
 export default {
   name: 'Header',
   props: {
     title: {
       type: String,
-      default: "Админка"
+      default: 'Админка'
     }
   },
-  data() {
-      return {
-
-      };
-    },
 
   computed: {
-    userIsAuth: function(){
-      var userRole = localStorage.getItem("isAuth");
-      return userRole
-    },
+    userIsAuth() {
+      const userRole = localStorage.getItem('isAuth');
+      return userRole;
+    }
   },
   methods: {
-    showMobileMenu(){
+    showMobileMenu() {
       const menuBtn = document.querySelector('.mobile-menu');
       const mobileMenu = document.querySelector('.sidebar');
       menuBtn.classList.toggle('open');
       mobileMenu.classList.toggle('show');
-
-    },
+    }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -147,7 +139,6 @@ header
             &::after
               transform: translateY(16px);
 
-
           &.open .mobile-menu__burger
             transform: translateX(-50px);
             background: transparent;
@@ -158,12 +149,4 @@ header
 
           &.open .mobile-menu__burger::after
             transform: rotate(-45deg) translate(35px, 35px);
-
-
-
-
-
-
-
-
 </style>

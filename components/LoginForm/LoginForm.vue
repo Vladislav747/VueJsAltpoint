@@ -14,51 +14,47 @@
               input.ui.button.secondary(type="button" value="Логин" @click="loginForm")
 </template>
 
-
-
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 
-import {users} from "../../api/index.js";
-import {showNoty} from "../../helpers";
+import { showNoty } from '../../helpers';
 export default {
-  name: 'LoginForm',
-  data() {
-    return {
-        title: "Авторизация",
-        loginTitle: "Логин",
-        passwordTitle: "Пароль",
-        login:"",
-        password:"",
-    };
-  },
-  computed: mapGetters({
-    user:'users/getUser'
-  }),
-  methods: {
-  /**
-   * Залогиниться
-  */
-  loginForm() {
-    console.log([this.login, this.password],"loginForm");
-    var currentUser = {
-      "login": this.login,
-      "password": this.password,
-    }
-    this.$store.commit('users/changeCurrentUser', currentUser);
-    console.log(this.user, "store");
-    var userRole = this.user;
-    if(userRole){
-      localStorage.setItem("role", userRole.role);
-      localStorage.setItem("isAuth", "true");
-      this.$router.push({ name: "profile"});
-    }else{
-      showNoty("Что то пошло не так - возможно вы ввели неверный логин или пароль!");
-    }
-
-  }
-}
-}
+      name: 'LoginForm',
+      data() {
+            return {
+                  title: 'Авторизация',
+                  loginTitle: 'Логин',
+                  passwordTitle: 'Пароль',
+                  login: '',
+                  password: ''
+            };
+      },
+      computed: mapGetters({
+            user: 'users/getUser'
+      }),
+      methods: {
+            /**
+             * Залогиниться
+             */
+            loginForm() {
+                  const currentUser = {
+                        login: this.login,
+                        password: this.password
+                  };
+                  this.$store.commit('users/changeCurrentUser', currentUser);
+                  const userRole = this.user;
+                  if (userRole) {
+                        localStorage.setItem('role', userRole.role);
+                        localStorage.setItem('isAuth', 'true');
+                        this.$router.push({ name: 'profile' });
+                  } else {
+                        showNoty(
+                              'Что то пошло не так - возможно вы ввели неверный логин или пароль!'
+                        );
+                  }
+            }
+      }
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -97,9 +93,7 @@ export default {
       text-align: left;
       margin-bottom: .5rem;
 
-
 @media screen and (max-width: 600px)
   .login-form__wrapper
     width: 90vw;
-
 </style>
